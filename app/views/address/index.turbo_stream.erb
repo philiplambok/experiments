@@ -1,0 +1,3 @@
+<%= turbo_stream.update('state') do %>
+  <%= options_for_select(@states.invert) %>
+<% end %>

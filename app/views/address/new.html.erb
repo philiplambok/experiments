@@ -1,0 +1,14 @@
+<h2>Address</h2>
+
+<%= form_with(url: '#') do |form| %>
+  <div data-controller="address">
+    <%= form.label 'Country' %>
+    <div class="form-control">
+      <%= form.select :country, CS.countries.invert, { include_blank: true }, class: 'form-control', data: { action: 'change->address#fetchState' } %>
+    </div>
+    <%= form.label 'State' %>
+    <div class="form-control">
+      <%= form.select :state, '', { include_blank: false }, class: 'form-control' %>
+    </div>
+  </div>
+<% end %>
