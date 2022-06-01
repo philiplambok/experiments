@@ -16,12 +16,6 @@ Things you may want to cover:
 
   None
 
-* Database creation
-
-  ```
-  bin/rails db:create
-  ```
-
 * Database initialization
 
   ```
@@ -38,10 +32,4 @@ Things you may want to cover:
 
   ```
   bin/dev
-  ```
-
-* Deployment instructions
-
-  ```
-  git push heroku main
   ```
