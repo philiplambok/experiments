@@ -20,21 +20,26 @@
                   <h5 class="modal-title" id="exampleModalLabel">Editing <%= employee.name %></h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <%= form_with(model: employee) do |form| %>
-                  <div class="modal-body">
-                    <div class="mb-3">
-                      <%= form.label :name, class: 'form-label' %>
-                      <%= form.text_field :name, class: 'form-control' %>
+                <%= turbo_frame_tag(dom_id(employee, :form)) do %>
+                  <%= form_with(model: employee) do |form| %>
+                    <div class="modal-body">
+                      <% if @error_message.present? %>
+                        <div class="alert alert-danger"><%= @error_message %></div>
+                      <% end %>
+                      <div class="mb-3">
+                        <%= form.label :name, class: 'form-label' %>
+                        <%= form.text_field :name, class: 'form-control' %>
+                      </div>
+                      <div class="mb-3">
+                        <%= form.label :email, class: 'form-label' %>
+                        <%= form.email_field :email, class: 'form-control' %>
+                      </div>
                     </div>
-                    <div class="mb-3">
-                      <%= form.label :email, class: 'form-label' %>
-                      <%= form.email_field :email, class: 'form-control' %>
+                    <div class="modal-footer">
+                      <%= link_to 'Close', '#', data: { 'bs-dismiss': 'modal' } %>
+                      <%= form.submit 'Save changes', class: 'btn btn-primary' %>
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <%= link_to 'Close', '#', data: { 'bs-dismiss': 'modal' } %>
-                    <%= form.submit 'Save changes', class: 'btn btn-primary' %>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>

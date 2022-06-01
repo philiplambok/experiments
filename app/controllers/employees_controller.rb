@@ -5,8 +5,13 @@ class EmployeesController < ApplicationController
 
   def update
     employee = Employee.find params[:id]
-    employee.update!(employee_params)
-    redirect_to employees_path
+    if employee.update(employee_params)
+      redirect_to employees_path
+    else
+      @employees = Employee.all
+      @error_message = employee.errors.full_messages.to_sentence
+      render :index, status: :unprocessable_entity
+    end
   end
 
   private
