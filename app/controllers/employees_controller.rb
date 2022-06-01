@@ -11,7 +11,6 @@ class EmployeesController < ApplicationController
       flash.now[:error] = @employee.errors.full_messages.to_sentence
       respond_to do |format|
         format.turbo_stream
-        format.js
       end
     end
   end

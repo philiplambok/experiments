@@ -1,3 +1,3 @@
-<%= turbo_stream.update(dom_id(@employee, :form)) do %>
-  <%= render 'employees/form', employee: @employee %>
+<%= turbo_stream.update(dom_id(@employee, :form_error)) do %>
+  <%= render 'employees/form_error' %>
 <% end %>
