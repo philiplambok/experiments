@@ -4,13 +4,15 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    employee = Employee.find params[:id]
-    if employee.update(employee_params)
+    @employee = Employee.find params[:id]
+    if @employee.update(employee_params)
       redirect_to employees_path
     else
-      @employees = Employee.all
-      @error_message = employee.errors.full_messages.to_sentence
-      render :index, status: :unprocessable_entity
+      flash.now[:error] = @employee.errors.full_messages.to_sentence
+      respond_to do |format|
+        format.turbo_stream
+        format.js
+      end
     end
   end
 

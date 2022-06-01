@@ -1,0 +1,19 @@
+<%= form_with(model: employee, id: dom_id(employee, :form)) do |form| %>
+  <div class="modal-body">
+    <% if flash[:error].present? %>
+      <div class="alert alert-danger"><%= flash[:error] %></div>
+    <% end %>
+    <div class="mb-3">
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :email, class: 'form-label' %>
+      <%= form.email_field :email, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= link_to 'Close', '#', data: { 'bs-dismiss': 'modal' } %>
+    <%= form.submit 'Save changes', class: 'btn btn-primary' %>
+  </div>
+<% end %>
