@@ -1,0 +1,43 @@
+<h1>List of employees</h1>
+
+<div class="row">
+  <% @employees.each do |employee| %>
+    <div class="col-md-4 pb-2" id="<%= dom_id(employee) %>">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%=  employee.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= employee.email %></h6>
+          <%= link_to 'Edit', '#', data: { 'bs-toggle': 'modal', 'bs-target': "##{dom_id(employee, :modal)}" } %>
+
+          <!-- Modal -->
+          <div class="modal fade" id="<%= dom_id(employee, :modal) %>" tabindex="-1" aria-labelledby="<%= dom_id(employee, :modal_label) %>" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Editing <%= employee.name %></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <%= form_with(model: employee) do |form| %>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <%= form.label :name, class: 'form-label' %>
+                      <%= form.text_field :name, class: 'form-control' %>
+                    </div>
+                    <div class="mb-3">
+                      <%= form.label :email, class: 'form-label' %>
+                      <%= form.email_field :email, class: 'form-control' %>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <%= link_to 'Close', '#', data: { 'bs-dismiss': 'modal' } %>
+                    <%= form.submit 'Save changes', class: 'btn btn-primary' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
