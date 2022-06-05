@@ -8,4 +8,5 @@
 
 1.upto(10).each do |index|
   Employee.create!(name: "Employee #{index}", email: "employee#{index}@email.com")
+  Admin.create!(name: "Admin #{index}", email: "admin#{index}@email.com")
 end
