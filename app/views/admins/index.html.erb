@@ -7,7 +7,7 @@
     <thead>
       <tr>
         <th>
-          <%= form.check_box('ids', { multiple: true, data: { action: 'change->tables#toggleAll' } }, 'all', nil) %>
+          <%= form.check_box('ids', { multiple: true, data: { action: 'change->tables#toggleAll', 'tables-target': 'masterCheck' } }, 'all', nil) %>
         </th>
         <th>Name</th>
         <th>Email</th>
@@ -16,7 +16,9 @@
     <tbody>
       <% @admins.each do |admin| %>
         <tr>
-          <td><%= form.check_box('ids', { multiple: true, data: { 'tables-target': 'admins' } }, admin.id, nil) %></td>
+          <td>
+            <%= form.check_box('ids', { multiple: true, data: { 'tables-target': 'items', action: 'change->tables#sync' } }, admin.id, nil) %>
+          </td>
           <td><%= admin.name %></td>
           <td><%= admin.email %></td>
         </tr>
