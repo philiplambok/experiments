@@ -9,6 +9,7 @@ export default class extends Controller {
       el.checked = event.target.checked
     })
   }
+
   sync(_event) {
     const checkedItems = this.itemsTargets.filter((el) => {
       return el.checked == true
