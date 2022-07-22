@@ -2,10 +2,13 @@
 
 <%= form_with(url: admins_path) do |form| %>
   <%= form.submit 'Delete', class: 'btn btn-primary' %>
-  <table class="table">
+
+  <table class="table" data-controller="tables">
     <thead>
       <tr>
-        <th><%= form.check_box('ids', { multiple: true }, 'all', nil) %></th>
+        <th>
+          <%= form.check_box('ids', { multiple: true, data: { action: 'change->tables#toggleAll' } }, 'all', nil) %>
+        </th>
         <th>Name</th>
         <th>Email</th>
       </tr>
@@ -13,7 +16,7 @@
     <tbody>
       <% @admins.each do |admin| %>
         <tr>
-          <td><%= form.check_box('ids', { multiple: true }, admin.id, nil) %></td>
+          <td><%= form.check_box('ids', { multiple: true, data: { 'tables-target': 'admins' } }, admin.id, nil) %></td>
           <td><%= admin.name %></td>
           <td><%= admin.email %></td>
         </tr>

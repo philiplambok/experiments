@@ -9,3 +9,6 @@ application.register("address", AddressController)
 
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
+
+import TablesController from "./tables_controller.js"
+application.register("tables", TablesController)
