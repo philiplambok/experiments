@@ -1,28 +1,32 @@
-<h1>Admins</h1>
 
-<%= form_with(url: admins_path) do |form| %>
-  <%= form.submit 'Delete', class: 'btn btn-primary' %>
+<div data-controller="tables">
+  <%= form_with(url: admins_path) do |form| %>
+    <div class="d-flex justify-content-between">
+      <h1>Admins</h1>
+      <%= form.submit 'Delete', class: 'btn btn-primary', data: { 'tables-target': 'deleteBtn'  }, class: 'd-none' %>
+    </div>
 
-  <table class="table" data-controller="tables">
-    <thead>
-      <tr>
-        <th>
-          <%= form.check_box('ids', { multiple: true, data: { action: 'change->tables#toggleAll', 'tables-target': 'masterCheck' } }, 'all', nil) %>
-        </th>
-        <th>Name</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @admins.each do |admin| %>
+    <table class="table">
+      <thead>
         <tr>
-          <td>
-            <%= form.check_box('ids', { multiple: true, data: { 'tables-target': 'items', action: 'change->tables#sync' } }, admin.id, nil) %>
-          </td>
-          <td><%= admin.name %></td>
-          <td><%= admin.email %></td>
+          <th>
+            <%= form.check_box('ids', { multiple: true, data: { action: 'change->tables#toggleAll', 'tables-target': 'masterCheck' } }, 'all', nil) %>
+          </th>
+          <th>Name</th>
+          <th>Email</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end  %>
+      </thead>
+      <tbody>
+        <% @admins.each do |admin| %>
+          <tr>
+            <td>
+              <%= form.check_box('ids', { multiple: true, data: { 'tables-target': 'items', action: 'change->tables#sync' } }, admin.id, nil) %>
+            </td>
+            <td><%= admin.name %></td>
+            <td><%= admin.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end  %>
+</div>
