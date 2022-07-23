@@ -3,7 +3,9 @@
   <%= form_with(url: admins_path) do |form| %>
     <div class="d-flex justify-content-between">
       <h1>Admins</h1>
-      <%= form.submit 'Delete', class: 'btn btn-primary', data: { 'tables-target': 'deleteBtn'  }, class: 'd-none' %>
+      <div>
+        <%= form.submit 'Delete', class: 'btn btn-danger d-none', data: { 'tables-target': 'deleteBtn'  } %>
+      </div>
     </div>
 
     <table class="table">
