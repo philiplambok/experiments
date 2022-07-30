@@ -11,5 +11,8 @@
 # end
 
 10.times.each do
-  Admin.create!(name: "Admin #{SecureRandom.hex}", email: "#{SecureRandom}@email.com")
+  Admin.create!(
+    name: Faker::Name.name,
+    email: Faker::Internet.email
+  )
 end
