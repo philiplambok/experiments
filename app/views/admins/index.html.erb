@@ -6,8 +6,8 @@
   </div>
 <% end %>
 
-<div data-controller="tables modals" >
-  <%= form_with(url: confirm_destroy_admins_path, method: :post, data: { action: 'turbo:submit-end->modals#hello' }) do |form| %>
+<div data-controller="tables" >
+  <%= form_with(url: confirm_destroy_admins_path, method: :post, data: { action: 'turbo:submit-end->tables#modalShow' }) do |form| %>
     <div class="d-flex justify-content-between">
       <h1>Admins</h1>
       <div>
@@ -42,11 +42,10 @@
   <% end  %>
 </div>
 
-<!-- Large modal -->
-<div class="modal fade" id="sampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div id="confirm"></div>
+      <div id="confirm-modal-content"></div>
     </div>
   </div>
 </div>

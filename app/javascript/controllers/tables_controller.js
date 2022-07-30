@@ -1,8 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
+import * as bootstrap from "bootstrap"
 
 // Connects to data-controller="tables"
 export default class extends Controller {
   static targets = ['items', 'masterCheck', 'deleteBtn']
+
+  modalShow(event) {
+    new bootstrap.Modal('#confirm-modal').show()
+  }
 
   toggleAll(event){
     this.itemsTargets.forEach((el) => {
