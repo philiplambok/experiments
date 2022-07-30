@@ -10,5 +10,8 @@ application.register("address", AddressController)
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
+import ModalsController from "./modals_controller.js"
+application.register("modals", ModalsController)
+
 import TablesController from "./tables_controller.js"
 application.register("tables", TablesController)

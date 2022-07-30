@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'admins/index'
   resources :employees
   resources :address
-  resources :admins
+  resource :admins do
+    post :confirm_destroy
+  end
 
   root 'home#index'
 end

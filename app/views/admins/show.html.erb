@@ -1,24 +1,15 @@
-
-<% if flash[:success].present? %>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <%= flash[:success] %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<% end %>
-
-<div data-controller="tables modals" >
-  <%= form_with(url: confirm_destroy_admins_path, method: :post, data: { action: 'turbo:submit-end->modals#hello' }) do |form| %>
+<div data-controller="tables">
+  <%= form_with(url: confirms_destroy_path, method: :post, data: { action: 'turbo:submit-end->tables#modalShow' }) do |form| %>
     <div class="d-flex justify-content-between">
-      <h1>Admins</h1>
+      <h3>List of admin</h3>
       <div>
-        <%= form.submit 'Delete', 
-            class: 'btn btn-danger d-none', 
-            data: { 'tables-target': 'deleteBtn' } %>
+        <%= form.submit 'Delete', method: :post, 
+                        class: 'btn btn-danger d-none', data: { 'tables-target': 'deleteBtn' } %>
       </div>
     </div>
 
     <table class="table">
-      <thead>
+      <thead class="thead-dark">
         <tr>
           <th>
             <%= form.check_box('ids', { multiple: true, data: { action: 'change->tables#toggleAll', 'tables-target': 'masterCheck' } }, 'all', nil) %>
@@ -42,11 +33,14 @@
   <% end  %>
 </div>
 
-<!-- Large modal -->
-<div class="modal fade" id="sampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" tabindex="-1" id="sample-modal" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
-      <div id="confirm"></div>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editing <%= Employee.first.name %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <p>Hello</p>
     </div>
   </div>
 </div>
