@@ -6,7 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-1.upto(10).each do |index|
-  Employee.create!(name: "Employee #{index}", email: "employee#{index}@email.com")
-  Admin.create!(name: "Admin #{index}", email: "admin#{index}@email.com")
+# 1.upto(10).each do |index|
+#   Employee.create!(name: "Employee #{index}", email: "employee#{index}@email.com")
+# end
+
+10.times.each do
+  Admin.create!(name: "Admin #{SecureRandom.hex}", email: "#{SecureRandom}@email.com")
 end
