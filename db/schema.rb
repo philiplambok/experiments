@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_05_082227) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_13_093701) do
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bundles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,4 +31,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_05_082227) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_bundles", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "bundle_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bundle_id"], name: "index_product_bundles_on_bundle_id"
+    t.index ["product_id"], name: "index_product_bundles_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "product_bundles", "bundles"
+  add_foreign_key "product_bundles", "products"
 end
