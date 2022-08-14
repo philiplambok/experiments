@@ -16,8 +16,6 @@
     email: Faker::Internet.email
   )
 end
-
-Product.create(name: 'Ayam', amount: 20_000)
-Product.create(name: 'Nasi', amount: 10_000)
-Product.create(name: 'Pepsi', amount: 11_000)
-Product.create(name: 'Cola', amount: 10_500)
+50.times.each do
+  Product.create!(name: Faker::Food.dish, amount: Faker::Number.within(range: 100_000..500_000))
+end

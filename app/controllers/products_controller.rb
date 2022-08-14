@@ -4,9 +4,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find params[:id]
-    product.update!(product_params)
-    # redirect_to products_path
+    @product = Product.find params[:id]
+    @product.update!(product_params)
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   private
