@@ -18,9 +18,17 @@
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <div>
-                I will not close if you click outside of me.
-              </div>
+              <%= form_with(model: product) do |form| %>
+                <div class="mb-3">
+                  <%= form.label :name, class: 'form-label' %>
+                  <%= form.text_field :name, class: 'form-control', value: product.name %>
+                </div>
+                <div class="mb-3">
+                  <%= form.label :amount, class: 'form-label' %>
+                  <%= form.number_field :amount, class: 'form-control', value: product.amount %>
+                </div>
+                <%= form.submit 'Save', class: 'btn btn-link m-0 p-0'  %>
+              <% end %>
             </div>
           </div>
         </div>
