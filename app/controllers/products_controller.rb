@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.all.order(id: :asc)
   end
 
   def update
@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.turbo_stream
     end
+  rescue ActiveRecord::RecordInvalid => e
+    @error = e
+    render status: :unprocessable_entity
   end
 
   private

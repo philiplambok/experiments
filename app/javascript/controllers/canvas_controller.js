@@ -4,7 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['closeBtn']
 
-  hide() {
-    this.closeBtnTarget.click()
+  hide(event) {
+    if(event.detail.success) {
+      this.closeBtnTarget.click()
+    }
   }
 }

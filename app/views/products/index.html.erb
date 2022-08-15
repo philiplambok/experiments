@@ -17,6 +17,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-canvas-target="closeBtn"></button>
           </div>
           <div class="offcanvas-body">
+            <div id="<%= dom_id(product, :error) %>"></div>
             <%= form_with(model: product, data: { action: 'turbo:submit-end->canvas#hide' }) do |form| %>
               <div class="mb-3">
                 <%= form.label :name, class: 'form-label' %>
