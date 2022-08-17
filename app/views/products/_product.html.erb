@@ -3,5 +3,5 @@
     <%= link_to product.id, '#', data: { 'bs-toggle': 'offcanvas', 'bs-target': "##{dom_id(product, :action)}" }, 'aria-controls': 'staticBackdrop' %>
   </td>
   <td><%= product.name %></td>
-  <td><%= product.amount %></td>
+  <td class="text-end"><%= to_idr product.amount %></td>
 </tr>
