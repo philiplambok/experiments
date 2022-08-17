@@ -10,27 +10,6 @@
       </tr>
       <% @products.each do |product| %>
         <%= render product %>
-
-        <div class="offcanvas offcanvas-end" data-controller="canvas" data-bs-backdrop="static" tabindex="-1" id="<%= dom_id(product, :action) %>" aria-labelledby="staticBackdropLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="staticBackdropLabel">Product #<%= product.id %></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-canvas-target="closeBtn"></button>
-          </div>
-          <div class="offcanvas-body">
-            <div id="<%= dom_id(product, :error) %>"></div>
-            <%= form_with(model: product, data: { action: 'turbo:submit-end->canvas#hide' }) do |form| %>
-              <div class="mb-3">
-                <%= form.label :name, class: 'form-label' %>
-                <%= form.text_field :name, class: 'form-control', value: product.name %>
-              </div>
-              <div class="mb-3">
-                <%= form.label :amount, class: 'form-label' %>
-                <%= form.number_field :amount, class: 'form-control', value: product.amount %>
-              </div>
-              <%= form.submit 'Save', class: 'btn btn-link m-0 p-0'  %>
-            <% end %>
-          </div>
-        </div>
       <% end %>
     </table>
   </div>
