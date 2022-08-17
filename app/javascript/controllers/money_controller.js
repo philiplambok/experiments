@@ -3,19 +3,19 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="money"
 export default class extends Controller {
   toIdr(event){
-    const rawAmount = event.srcElement.value.replace(/,/g, '')
-    let parsedAmountInReversed = ''
-    rawAmount.split('').reverse().forEach((el, index) => {
-      if(index % 3 === 0) {
-        parsedAmountInReversed += ','
+    const onlyIntegerSubmittedValue = event.srcElement.value.split('').filter((el) => {
+      return Number.isInteger(parseInt(el))
+    }).join('')
+
+    let idrInReversed = ''
+    onlyIntegerSubmittedValue.split('').reverse().forEach((el, index) => {
+      if(index % 3 === 0 && index !== 0) {
+        idrInReversed += ','
       }
-      parsedAmountInReversed += el
+      idrInReversed += el
     })
 
-    let parsedAmount = parsedAmountInReversed.split('').reverse()
-    if(parsedAmount[parsedAmount.length - 1] === ',') {
-      parsedAmount.pop()
-    }
-    event.srcElement.value = parsedAmount.join('')
+    const idr = idrInReversed.split("").reverse().join('')
+    event.srcElement.value = idr
   }
 }
