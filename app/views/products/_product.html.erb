@@ -6,7 +6,7 @@
   <td class="text-end"><%= to_idr product.amount %></td>
 </tr>
 
-<div class="offcanvas offcanvas-end" data-controller="canvas" data-bs-backdrop="static" tabindex="-1" id="<%= dom_id(product, :action) %>" aria-labelledby="staticBackdropLabel">
+<div class="offcanvas offcanvas-end" data-controller="canvas money" data-bs-backdrop="static" tabindex="-1" id="<%= dom_id(product, :action) %>" aria-labelledby="staticBackdropLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="staticBackdropLabel">Product #<%= product.id %></h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-canvas-target="closeBtn"></button>
@@ -20,7 +20,11 @@
       </div>
       <div class="mb-3">
         <%= form.label :amount, class: 'form-label' %>
-        <%= form.number_field :amount, class: 'form-control', value: product.amount %>
+        <div class="input-group">
+          <span class="input-group-text">Rp</span>
+          <%= form.text_field :amount, class: 'form-control', value: to_idr_number(product.amount), 
+              data: { controller: 'money', action: 'keyup->money#toIdr' } %>
+        </div>
       </div>
       <%= form.submit 'Save', class: 'btn btn-link m-0 p-0'  %>
     <% end %>
